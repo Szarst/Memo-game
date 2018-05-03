@@ -26,6 +26,13 @@ const cards = [
  *   - add each card's HTML to the page
  */
 
+// loop through each card and create its HTML
+for (let i = 0; i <= cards.length; i++) {
+	let newCard = 
+	let cardsInside = document.getElementsByClassName('card');
+	cardsInside.innerHTML()
+}
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -41,11 +48,6 @@ function shuffle(array) {
     return array;
 }
 
-// loop through each card and create its HTML
-function createHTML () {
-  const cardsHTML = document.createElement(cards);
-	}
-}
 
 /*
  * set up the event listener for a card. If a card is clicked:
