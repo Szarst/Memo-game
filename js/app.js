@@ -41,12 +41,13 @@ function shuffle(array) {
 
     return array;
 }
-
+// Shuffle cards array
+const shuffledCards = shuffle(cards);
 
 // loop through each card and create its HTML
 for (let i = 0; i <= cards.length; i++) {
 	let cardsInside = document.getElementsByClassName('card');
-	cardsInside.innerHTML(cards);
+	cardsInside.innerHTML(shuffledCards);
 }
 
 /*
