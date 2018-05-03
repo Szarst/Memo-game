@@ -28,9 +28,8 @@ const cards = [
 
 // loop through each card and create its HTML
 for (let i = 0; i <= cards.length; i++) {
-	let newCard = 
 	let cardsInside = document.getElementsByClassName('card');
-	cardsInside.innerHTML()
+	cardsInside.innerHTML(cards);
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
