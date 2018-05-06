@@ -46,8 +46,8 @@ const shuffledCards = shuffle(cards);
 
 // loop through each card and create its HTML
 for (let i = 0; i <= cards.length; i++) {
-	let cardsInside = document.getElementsByClassName('card');
-	cardsInside.innerHTML(shuffledCards);
+	let cardsInside = document.getElementsByClassName('card'); //w jaki sposób program ma znaleźć te miejsce do zmiany
+	cardsInside.innerHTML(shuffledCards); //jak już znajdzie, co ma z tym zrobić
 }
 
 /*
@@ -60,3 +60,22 @@ for (let i = 0; i <= cards.length; i++) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+//Parametry samej gry
+const matchTestArray = []; //array for clicked titles (other function should restrict number of flipped titles)
+const timer = 0;
+const moveCounter = 0;
+
+//W grze są wykorzystywane 3 klasy: 
+//"card open show"->po kliknięciu widać kartę
+//"card match"-> karty już określone jako dopasowane
+//"card"->zakryta karta
+//wszystkie karty przechodzą 3 stany: zakryta - pokazana - dopasowana
+
+//po kliknięciu przenosi kartę do matchTestArray
+$(.deck).addEventListener('click', function matchTestArray()
+
+
+
+
+
