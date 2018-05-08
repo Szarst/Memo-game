@@ -41,19 +41,9 @@ function shuffle(array) {
 
     return array;
 }
-// Shuffle cards array
-const shuffledCards = shuffle(cards);
 
-// loop through each card and create its HTML
-for (let i = 0; i <= cards.length; i++) {
-	let cardsInside = document.getElementsByTagName('li'); //finds sole cards
-	cardsInside. //jak już znajdzie, co ma z tym zrobić
-}
+//Icons in cards are classes atribute. Shuffling card's icons means shuffling classes between <i> tag.
 
-const deck = document.querySelector(".deck");
-deck.addEventListener(click, function(){
-	cardsInside.addClass("open" "show");
-	);
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
