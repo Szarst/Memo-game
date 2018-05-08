@@ -48,7 +48,7 @@ function shuffledDeck() {
     const shuffledCardsArray = shuffle(cards); 
     for (let num = 0; num <= shuffledCardsArray.lenght; num++) {
         let deckCards = deck.getElementsByTagName('i');
-        let cardsClass = deckCards[num].getAttribute('calss');
+        let cardsClass = deckCards.getAttribute('calss');
         cardsClass.className('');
         cardsClass.classList.add(num);
     };
