@@ -25,7 +25,8 @@ const cards = [
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-
+//Global variables from DOM
+const deck = document.getElementsByClassName('.deck');
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -42,8 +43,17 @@ function shuffle(array) {
     return array;
 }
 
-//Icons in cards are classes atribute. Shuffling card's icons means shuffling classes between <i> tag.
-
+//Icons in cards are class atribute. Shuffling card's icons means shuffling classes between <i> tag.
+function shuffledDeck() {
+    const shuffledCardsArray = shuffle(cards); 
+    for (let num = 0; num <= shuffledCardsArray.lenght; num++) {
+        let deckCards = deck.getElementsByTagName('i');
+        let cardsClass = deckCards[num].getAttribute('calss');
+        cardsClass.className('');
+        cardsClass.classList.add(num);
+    };
+}
+shuffledDeck();
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
