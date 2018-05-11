@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-const karty = [
+const cards = [
 'fa fa-diamond',
 'fa fa-paper-plane-o',
 'fa fa-anchor',
@@ -44,7 +44,7 @@ function shuffle(array) {
 }
 
 //Icons in cards are class atribute. Shuffling card's icons means shuffling classes between <i> tag.
-    const shuffledDeck = shuffle(karty); //pl: wymieszaneKarty
+    const shuffledDeck = shuffle(cards); //pl: wymieszana talia kart
     for (let idx = 0; idx <= shuffledDeck.lenght; idx++) { //idx stands for index
         let oneShuffledCard = shuffledDeck[idx]; //pl: wymieszanaKarta
         let cardIcon = deck.getElementsByTagName('i').getAttribute('class'); //określa ścieżkę dojścia do ikony
