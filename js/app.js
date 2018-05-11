@@ -48,18 +48,10 @@ function shuffle(array) {
     for (let idx = 0; idx <= shuffledDeck.lenght; idx++) { //idx stands for index
         let oneShuffledCard = shuffledDeck[idx]; //pl: wymieszanaKarta
         let cardIcon = deck.getElementsByTagName('i').getAttribute('class'); //określa ścieżkę dojścia do ikony
-        cardIcon.className('');
-        cardIcon.classList.add(oneShuffledCard);
+        cardIcon.classList.replace(oneShuffledCard);
     };
         
-        
-        let deckCards = deck.getElementsByTagName('i');
-        let cardsClass = deckCards.getAttribute('calss');
-        cardsClass.className('');
-        cardsClass.classList.add(num);
-    };
-}
-shuffledDeck();
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
