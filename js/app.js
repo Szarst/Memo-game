@@ -49,7 +49,7 @@ function shuffle(array) {
         let wymieszanaKarta = wymieszaneKarty[idx];
         let ikonaKarty = taliaKart.getElementsByTagName('i').getAttribute('class'); //określa ścieżkę dojścia do ikony
         ikonaKarty.className('');
-        ikonaKarty.classList.add(idx);
+        ikonaKarty.classList.add(wymieszanaKarta);
     };
         
         
