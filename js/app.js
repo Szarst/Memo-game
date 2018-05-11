@@ -48,7 +48,9 @@ function shuffle(array) {
     for (let idx = 0; idx <= wymieszaneKarty.lenght; idx++) { //idx stands for index
         let wymieszanaKarta = wymieszaneKarty[idx];
         let ikonaKarty = taliaKart.getElementsByTagName('i').getAttribute('class'); //określa ścieżkę dojścia do ikony
-        wymieszanaKarta = 
+        ikonaKarty.className('');
+        ikonaKarty.classList.add(idx);
+    };
         
         
         let deckCards = deck.getElementsByTagName('i');
