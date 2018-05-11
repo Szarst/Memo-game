@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
-const cards = [
+const karty = [
 'fa fa-diamond',
 'fa fa-paper-plane-o',
 'fa fa-anchor',
@@ -26,7 +26,7 @@ const cards = [
  *   - add each card's HTML to the page
  */
 //Global variables from DOM
-const deck = document.getElementsByClassName('.deck');
+const taliaKart = document.getElementsByClassName('.deck');
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -44,9 +44,13 @@ function shuffle(array) {
 }
 
 //Icons in cards are class atribute. Shuffling card's icons means shuffling classes between <i> tag.
-function shuffledDeck() {
-    const shuffledCardsArray = shuffle(cards); 
-    for (let num = 0; num <= shuffledCardsArray.lenght; num++) {
+    const wymieszaneKarty = shuffle(karty); 
+    for (let idx = 0; idx <= wymieszaneKarty.lenght; idx++) { //idx stands for index
+        let wymieszanaKarta = wymieszaneKarty[idx];
+        let ikonaKarty = taliaKart.getElementsByTagName('i').getAttribute('class'); //określa ścieżkę dojścia do ikony
+        wymieszanaKarta = 
+        
+        
         let deckCards = deck.getElementsByTagName('i');
         let cardsClass = deckCards.getAttribute('calss');
         cardsClass.className('');
