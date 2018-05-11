@@ -27,6 +27,12 @@ const cards = [
  */
 //Global variables from DOM
 const deck = document.getElementsByClassName('.deck'); // pl: deck to talia kart
+const clickedCards = []; //pl: tablica, w do której trafią kliknięte karty
+const canClick = true; //pl: czy można klikać dalej
+
+if (clickedCards[0] === clickedCards[1]) {
+    deck.getElementsByTagName('li'); //zmiana clasy na open matched
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -48,7 +54,8 @@ function shuffle(array) {
     for (let idx = 0; idx <= shuffledDeck.lenght; idx++) { //idx stands for index
         let oneShuffledCard = shuffledDeck[idx]; //pl: wymieszanaKarta
         let cardIcon = deck.getElementsByTagName('i').getAttribute('class'); //określa ścieżkę dojścia do ikony
-        cardIcon.classList.replace(oneShuffledCard);
+        cardIcon.className = '';
+        cardIcon.classList.add(oneShuffledCard);
     };
         
 
