@@ -46,7 +46,7 @@ function shuffle(array) {
 }
 
 /*** Shuffling card's icons means shuffling classes between <i> tag. ***/
-function initialize(){
+function initialize(){ //This function put together: shuffling, puting it to the DOM, event listener.
 const shuffledCards = shuffle(cards); //Shuffling `cards` array with given shuffle function.
 for (let i = 0; i <= shuffledCards.length; i++) { //Looping through all shuffled `cards` array.
   card.removeClass(); //This should make empy classes: <i class=""></i>
@@ -62,7 +62,7 @@ clickCardEvent.addEventListener("click", function(){
 });
 };
 
-function gameFunctions() {
+function gameFunctions() { //This function put together: if we can click, compering cards, 
 /*** When the second card is added to the checkedCardsArray array, clickCardEvent should be disabled ***/
 function cannotClick() {
   if (checkedCardsArray.length <= 2) {
