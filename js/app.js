@@ -1,23 +1,27 @@
-/*
- * Create a list that holds all of your cards
- */
 const cards = [
-'fa fa-diamond',
-'fa fa-paper-plane-o',
-'fa fa-anchor',
-'fa fa-bolt',
-'fa fa-cube',
-'fa fa-anchor',
-'fa fa-leaf',
-'fa fa-bicycle',
-'fa fa-diamond',
-'fa fa-bomb',
-'fa fa-leaf',
-'fa fa-bomb',
-'fa fa-bolt',
-'fa fa-bicycle',
-'fa fa-paper-plane-o',
-'fa fa-cube'];
+"fa fa-diamond",
+"fa fa-paper-plane-o",
+"fa fa-anchor",
+"fa fa-bolt",
+"fa fa-cube",
+"fa fa-anchor",
+"fa fa-leaf",
+"fa fa-bicycle",
+"fa fa-diamond",
+"fa fa-bomb",
+"fa fa-leaf",
+"fa fa-bomb",
+"fa fa-bolt",
+"fa fa-bicycle",
+"fa fa-paper-plane-o",
+"fa fa-cube"];
+
+const deck = document.getElementsByClassName(".deck");
+const cards = deck.getElementsByTagName("li");
+const icon = deck.getElementsByTagName('i');
+const checkedCardsArray = [];
+const matchedCardsArray = []; //pairs are here
+let moves = 0;
 
 /*
  * Display the cards on the page
@@ -25,14 +29,6 @@ const cards = [
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-//Global variables from DOM
-const deck = document.getElementsByClassName('.deck'); // pl: deck to talia kart
-const clickedCards = []; //pl: tablica, w do której trafią kliknięte karty
-const canClick = true; //pl: czy można klikać dalej
-
-if (clickedCards[0] === clickedCards[1]) {
-    deck.getElementsByTagName('li'); //zmiana clasy na open matched
-
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -49,28 +45,60 @@ function shuffle(array) {
     return array;
 }
 
-//Icons in cards are class atribute. Shuffling card's icons means shuffling classes between <i> tag.
-    const shuffledDeck = shuffle(cards); //pl: wymieszana talia kart
-    for (let idx = 0; idx <= shuffledDeck.lenght; idx++) { //idx stands for index
-        let oneShuffledCard = shuffledDeck[idx]; //pl: wymieszanaKarta
-        let cardIcon = deck.getElementsByTagName('i').getAttribute('class'); //określa ścieżkę dojścia do ikony
-        cardIcon.className = '';
-        cardIcon.classList.add(oneShuffledCard);
-    };
-        
+/*** Shuffling card's icons means shuffling classes between <i> tag. ***/
+function initialize(){
+const shuffledCards = shuffle(cards); //Shuffling `cards` array with given shuffle function.
+for (let i = 0; i <= shuffledCards.length; i++) { //Looping through all shuffled `cards` array.
+  card.removeClass(); //This should make empy classes: <i class=""></i>
+  card.addClass('shuffledIcons[idx]'); //Filling the empty class with shuffled ones.
+};
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+/*** To be alble to click a card, the Event Listener is needed ***/
+const clickCardEvent = $(".card");
+clickCardEvent.addEventListener("click", function(){
+  /*** What should happen when the card is clicked ***/
+    const cardOpenShow = icon.addClass("open show"); //Changing icon to visible class.
+    checkedCardsArray.push(cardOpenShow); //Adding to checkedCardsArray array where 2 cards will be compared.
+});
+};
 
+function gameFunctions() {
+/*** When the second card is added to the checkedCardsArray array, clickCardEvent should be disabled ***/
+function cannotClick() {
+  if (checkedCardsArray.length <= 2) {
+    clickCardEvent.addEventListener("click", function(), false)
+  }else{
+    clickCardEvent.addEventListener("click", function(), true)
+  }
+};
 
+/*** Compering 2 cards in the checkedCardsArray array ***/
+function comperingCards() {
+  for (let i = 0; i <= checkedCardsArray.length; i++) {
+    if (checkedCardsArray[0] == checkedCardsArray[1]) { //If the cards are the same...
+      icon.removeClass("open show"); //... remove classes needed to see the card...
+      icon.addClass("match"); //... and change them to class that means matched cards.
+      const matchedCards = icon.getElementsByClassName(".match");
+      matchedCardsArray.push(matchedCards);
+    } else { //If the cards are NOT the same...
+      icon.removeClass("open show"); //... just remove the visible classes and leave the `card` class.
+    }
+  }
+  checkedCardsArray.splice(0,2); //After testing cards, matched or not, the checkedCardsArray array must be empted.
+  moves++ //And this whole executed function is counted as one move.
+};
 
+/*** When all of the cards are matched ***/
+function allCardsMatched ()){
+    if (matchedCardsArray.length == 16) {
+      alert = ()"Congrats! You won 1 free internet!");
+    }
+};
+};
 
+function startTheGame() {
+initialize();
+gameFunctions();
+};
 
+startTheGame();
