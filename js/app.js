@@ -1,5 +1,8 @@
-const cards = [
-"fa fa-diamond",
+/*
+ * Create a list that holds all of your cards
+ */
+
+const icons = ["fa fa-diamond",
 "fa fa-paper-plane-o",
 "fa fa-anchor",
 "fa fa-bolt",
@@ -15,13 +18,6 @@ const cards = [
 "fa fa-bicycle",
 "fa fa-paper-plane-o",
 "fa fa-cube"];
-
-const deck = document.getElementsByClassName(".deck");
-const cards = deck.getElementsByTagName("li");
-const icon = deck.getElementsByTagName('i');
-const checkedCardsArray = [];
-const matchedCardsArray = []; //pairs are here
-let moves = 0;
 
 /*
  * Display the cards on the page
@@ -45,60 +41,50 @@ function shuffle(array) {
     return array;
 }
 
-/*** Shuffling card's icons means shuffling classes between <i> tag. ***/
-function initialize(){ //This function put together: shuffling, puting it to the DOM, event listener.
-const shuffledCards = shuffle(cards); //Shuffling `cards` array with given shuffle function.
-for (let i = 0; i <= shuffledCards.length; i++) { //Looping through all shuffled `cards` array.
-  card.removeClass(); //This should make empy classes: <i class=""></i>
-  card.addClass('shuffledIcons[idx]'); //Filling the empty class with shuffled ones.
-};
+let openedCardsArray = [];
+let matchedCardsArray = [];
 
-/*** To be alble to click a card, the Event Listener is needed ***/
-const clickCardEvent = $(".card");
-clickCardEvent.addEventListener("click", function(){
-  /*** What should happen when the card is clicked ***/
-    const cardOpenShow = icon.addClass("open show"); //Changing icon to visible class.
-    checkedCardsArray.push(cardOpenShow); //Adding to checkedCardsArray array where 2 cards will be compared.
-});
-};
+$('.deck').empty();
+//Creating a new deck
+const shuffledIcons = shuffle(icons);
+for (let i = 0; i < shuffledIcons.length; i++) {
+  //Removing existing cards from the deck
+  const cards = document.createElement('li');
+  cards.setAttribute('class', 'card');
+  cards.innerHTML = '<i class="'+ icons[i] +'"></i>';
+  $('.deck').append(cards);
 
-function gameFunctions() { //This function put together: if we can click, compering cards, 
-/*** When the second card is added to the checkedCardsArray array, clickCardEvent should be disabled ***/
-function cannotClick() {
-  if (checkedCardsArray.length <= 2) {
-    clickCardEvent.addEventListener("click", function(), false)
-  }else{
-    clickCardEvent.addEventListener("click", function(), true)
-  }
-};
+  //click eventlistener
+  cards.addEventListener('click', function(){
+    //current opened card:
+    if (openedCardsArray.length > 1) {
+      cards.classList.add('open', 'show');
+      openedCardsArray.push(this);
 
-/*** Compering 2 cards in the checkedCardsArray array ***/
-function comperingCards() {
-  for (let i = 0; i <= checkedCardsArray.length; i++) {
-    if (checkedCardsArray[0] == checkedCardsArray[1]) { //If the cards are the same...
-      icon.removeClass("open show"); //... remove classes needed to see the card...
-      icon.addClass("match"); //... and change them to class that means matched cards.
-      const matchedCards = icon.getElementsByClassName(".match");
-      matchedCardsArray.push(matchedCards);
-    } else { //If the cards are NOT the same...
-      icon.removeClass("open show"); //... just remove the visible classes and leave the `card` class.
+      //compering 2 cards:
+      
+
+      
+    } else {
+      cards.classList.add('open', 'show');
+      openedCardsArray.push(this);
     }
-  }
-  checkedCardsArray.splice(0,2); //After testing cards, matched or not, the checkedCardsArray array must be empted.
-  moves++ //And this whole executed function is counted as one move.
+
+
+
+  });
+
 };
 
-/*** When all of the cards are matched ***/
-function allCardsMatched ()){
-    if (matchedCardsArray.length == 16) {
-      alert = ()"Congrats! You won 1 free internet!");
-    }
-};
-};
+/*
+ * set up the event listener for a card. If a card is clicked:
+ *  - display the card's symbol (put this functionality in another function that you call from this one)
+ *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+ *  - if the list already has another card, check to see if the two cards match
+ *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+ *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+ *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+ *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ */
 
-function startTheGame() {
-initialize();
-gameFunctions();
-};
-
-startTheGame();
+//display the card's symbol (put this functionality in another function that you call from this one)
