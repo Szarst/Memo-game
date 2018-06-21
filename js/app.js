@@ -26,7 +26,7 @@ const icons = [
  *   - add each card's HTML to the page
  */
 
-// timer
+// Timer:
 let timer = document.querySelector(".timer");
 let interval;
 let second = 0;
@@ -39,10 +39,11 @@ let openedCards = [];
 let matchedCards = [];
 
 /*
- * Initializing the game
+ * Initializing the game:
  */
 function init(){
   $('.deck').empty();
+
   const shuffleIcons = shuffle(icons);
   for (let i = 0; i <icons.length; i++) {
     const card = document.createElement("li");
@@ -50,37 +51,32 @@ function init(){
     card.innerHTML = '<i class="' + icons[i]+ '"></i>'
     cardsContainer.appendChild(card);
 
-    //Add click event to each card
+    //Add click event to each card:
     click(card);
 
-    //timer setup
+    //Timer setup:
     resetTimer();
 	timer.style.display = "none";
 	timeStart = false;
 	timer.textContent = minute + " minutes " + second + " seconds";
-
   }
 }
 
-
 /*
- * click event
+ * Click event:
  */
 function click(card){
   card.addEventListener("click", function() {
-
     if (!timeStart) {
     		startTimer();
     		timeStart = true;
     		timer.style.display = "inline-block";
     	}
-
     const currentCard = this;
     const previousCard = openedCards[0];
 
     //we have an existing opened card:
     if(openedCards.length === 1) {
-
       card.classList.add("open", "show", "disable");
       openedCards.push(this);
 
@@ -91,48 +87,53 @@ function click(card){
       card.classList.add("open", "show", "disable");
       openedCards.push(this);
       addMove();
-    }
+      }
   });
 }
 
+
 /*
- * Compare the cards
+ * Compare the cards:
  */
 function compare(currentCard, previousCard){
   if(currentCard.innerHTML === previousCard.innerHTML) {
     //matched
     currentCard.classList.add("match");
     previousCard.classList.add("match");
-
     matchedCards.push(currentCard, previousCard);
-
     openedCards = [];
 
     //check if the game is isOver
     isOver();
 
   } else {
-
     setTimeout(function(){
       currentCard.classList.remove("open", "show", "disable");
       previousCard.classList.remove("open", "show", "disable");
       openedCards = [];
-    }, 500);
+    }, 400);
   }
 }
 
  function isOver() {
    if(matchedCards.length === icons.length) {
-     alert("You won in " + moves +" moves and " + timer.textContent + ".");
+     swal({
+       title: "success",
+       text: "You won in " + moves +" moves and " + timer.textContent + ".",
+       icon: "success",
+       button: "GR8!",
+     });
+     //alert("You won in " + moves +" moves and " + timer.textContent + ".");
    }
  }
 
 /*
- * Moves counting
+ * Moves counting:
  */
- const movesStars = document.querySelector(".moves");
+const movesStars = document.querySelector(".moves");
 let moves = 0;
 moves.innerHTML = 0;
+
 function addMove() {
   moves++;
   movesStars.innerHTML = moves;
@@ -142,7 +143,7 @@ function addMove() {
 }
 
 /*
- * Star raiting
+ * Star raiting:
  */
 const starsContainer = document.querySelector(".stars");
 function starsRaiting(){
@@ -157,17 +158,18 @@ function starsRaiting(){
 }
 
 /*
- * Timer section
+ * Timer section:
  */
- // Zero position
-  function resetTimer() {
- 	clearInterval(interval);
- 	second = 0;
- 	minute = 0;
- }
 
- // Start timer
-  function startTimer() {
+// Zero position:
+function resetTimer() {
+  clearInterval(interval);
+  second = 0;
+  minute = 0;
+}
+
+// Start timer:
+function startTimer() {
  	interval = setInterval(function() {
  		timer.textContent = minute + " minutes " + second + " seconds ";
  		second++;
@@ -179,18 +181,19 @@ function starsRaiting(){
  }
 
 /*
- * Restart game button
+ * Restart game button:
  */
 const restartButton = document.querySelector(".restart");
 restartButton.addEventListener("click", function() {
-  //remove all cardsContainer
+  //remove all cardsContainer:
   cardsContainer.innerHTML = "";
 
-  //initialize new Game
+  //initialize new game:
   init();
 
-  //reset all variables
+  //reset all variables:
   matchedCards = [];
+  openedCards = [];
   moves = 0;
   movesStars.innerHTML = moves;
   starsContainer.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
@@ -200,7 +203,7 @@ restartButton.addEventListener("click", function() {
   	timer.textContent = minute + " minutes " + second + " seconds";
 });
 
- //Start the game for the 1st time
+ //Start the game for the 1st time:
 init();
 
 //Shuffle function from http://stackoverflow.com/a/2450976
