@@ -110,3 +110,44 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+
+@media only screen and (max-width: 700px) {
+  .deck {
+    width: 360px;
+    min-height: 380px;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 16px;
+    border-radius: 5px;
+    box-shadow: 6px 7px 10px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+  }
+
+  .deck .card {
+      height: 70px;
+      width: 70px;
+      background: #2e3d49;
+      font-size: 0;
+      color: #ffffff;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 2px 1px 10px 0 rgba(46, 61, 73, 0.5);
+  }
+
+  .deck .card.show {
+      font-size: 25px;
+  }
+
+  .deck .card.match {
+      cursor: default;
+      background: #02ccba;
+      font-size: 25px;
+  }
+}
