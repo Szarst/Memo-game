@@ -43,7 +43,6 @@ let matchedCards = [];
  */
 function init(){
   $('.deck').empty();
-
   const shuffleIcons = shuffle(icons);
   for (let i = 0; i <icons.length; i++) {
     const card = document.createElement("li");
@@ -87,10 +86,9 @@ function click(card){
       card.classList.add("open", "show", "disable");
       openedCards.push(this);
       addMove();
-      }
+    }
   });
 }
-
 
 /*
  * Compare the cards:
@@ -116,14 +114,31 @@ function compare(currentCard, previousCard){
 }
 
  function isOver() {
+   let starsNum = "";
+   if (starsContainer.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>'){
+     starsNum = "2";
+   } else if (starsContainer.innerHTML = '<li><i class="fa fa-star"></i></li>') {
+     starsNum = "1";
+   } else {
+     starsNum = "3";
+   }
+
    if(matchedCards.length === icons.length) {
      swal({
-       title: "success",
-       text: "You won in " + moves +" moves and " + timer.textContent + ".",
-       icon: "success",
-       button: "GR8!",
-     });
-     //alert("You won in " + moves +" moves and " + timer.textContent + ".");
+         closeOnEsc: false,
+         allowOutsideClick: false,
+         title: 'Success!',
+         text: 'You won in ' + moves + ' moves what give u ' + starsNum + ' stars. Your time is '  + timer.textContent +'.',
+         icon: 'success',
+         button: 'Play again!'
+         }).then(function(isConfirm) {
+       		if (isConfirm) {
+            starsContainer.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
+            movesStars.innerHTML = 0;
+            moves = 0;
+            init();
+       		}
+       	})
    }
  }
 
@@ -192,8 +207,8 @@ restartButton.addEventListener("click", function() {
   init();
 
   //reset all variables:
-  matchedCards = [];
   openedCards = [];
+  matchedCards = [];
   moves = 0;
   movesStars.innerHTML = moves;
   starsContainer.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
